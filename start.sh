@@ -8,29 +8,29 @@ sudo cp -r ./xorg.conf.d/* /etc/X11/xorg.conf.d/
 sudo rm -rf ./xorg.conf.d/
 
 # move .config to ~
-sudo mv -f .config/ $HOME/
+mv .config/* ~/.config/
 rm -rf .config/
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # move .xinitrc to ~
-mv .xinitrc $HOME
+mv .xinitrc ~
 
 # oh-my-zsh config
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-mv -f .zshrc $HOME
+mv -f .zshrc ~
 
 # move wallpapper to ~ and set it 
-mv wp.png $HOME
-feh --bg-center $HOME/wp.png
+mv wp.png ~ 
+feh --bg-center ~/wp.png
 
 rm -rf ../dotfiles/
 
 # install dwm
-cd $HOME/.config/dwm/
+cd ~/.config/dwm/
 make
 sudo make install
 
-echo "====="
 echo "Done!"
