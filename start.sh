@@ -25,6 +25,6 @@ mv wp.png ~ && feh --bg-center ~/wp.png
 # install dwm
 cd ~/.config/dwm/ && make && sudo make install
 
-rm -rf ../dotfiles/
+rm -rf ../dotfiles
 
 echo "Done!"
