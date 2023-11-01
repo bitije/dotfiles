@@ -5,11 +5,9 @@ ssh-keygen -t rsa
 
 # keyboard, touchpad, amd configs files
 sudo mv ./xorg.conf.d/* /etc/X11/xorg.conf.d/
-rmdir xorg.conf.d/
 
 # move .config to ~
 mv .config/* ~/.config/
-rmdir .config
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
@@ -26,5 +24,7 @@ mv wp.png ~ && feh --bg-center ~/wp.png
 
 # install dwm
 cd ~/.config/dwm/ && make && sudo make install
+
+rm -rf ../dotfiles/
 
 echo "Done!"
