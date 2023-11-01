@@ -4,15 +4,12 @@ sudo pacman -S neofetch htop tmux neovim firefox alacritty zsh xf86-input-libinp
 ssh-keygen -t rsa
 
 # keyboard, touchpad, amd configs files
-sudo cp -r ./xorg.conf.d/* /etc/X11/xorg.conf.d/
-sudo rm -rf ./xorg.conf.d/
+sudo mv ./xorg.conf.d/* /etc/X11/xorg.conf.d/
 
 # move .config to ~
 mv .config/* ~/.config/
-rm -rf .config/
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # move .xinitrc to ~
 mv .xinitrc ~
@@ -25,8 +22,6 @@ mv -f .zshrc ~
 # move wallpapper to ~ and set it 
 mv wp.png ~ 
 feh --bg-center ~/wp.png
-
-rm -rf ../dotfiles/
 
 # install dwm
 cd ~/.config/dwm/
