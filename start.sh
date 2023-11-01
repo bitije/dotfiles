@@ -8,8 +8,8 @@ sudo cp -r ./xorg.conf.d/* /etc/X11/xorg.conf.d/
 sudo rm -rf ./xorg.conf.d/
 
 # move .config to ~
-sudo mv ./.config/* $HOME/config/
-rm -rf ./.config/
+sudo mv -f .config/ $HOME/
+rm -rf .config/
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
