@@ -7,7 +7,7 @@ ssh-keygen -t rsa
 sudo mv ./xorg.conf.d/* /etc/X11/xorg.conf.d/
 
 # move .config to ~
-mv .config/* ~/.config/
+cp -rf .config/ ~
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
