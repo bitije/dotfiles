@@ -6,24 +6,26 @@ ssh-keygen -t rsa
 # keyboard, touchpad, amd configs files
 sudo mv ./xorg.conf.d/* /etc/X11/xorg.conf.d/
 
-# move .config to ~
+# move .config to /home/
 cp -rf .config/ ~
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# move .xinitrc to ~
-mv .xinitrc ~
+# move .xinitrc to /home/
+mv .xinitrc ~j
 
 # oh-my-zsh config
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 mv -f .zshrc ~
 
-# move wallpapper to ~ and set it 
+# move wallpapper to /home/ and set it 
 mv wp.png ~ && feh --bg-center ~/wp.png
+
+#delete dotfiles
+rm -rf ../dotfiles/
 
 # install dwm
 cd ~/.config/dwm/ && make && sudo make install
 
 echo "Done!"
-rm -rf xorg.conf.d/ .config/ ../dotfiles/
