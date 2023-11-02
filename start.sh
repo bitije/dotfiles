@@ -26,4 +26,4 @@ mv wp.png ~ && feh --bg-center ~/wp.png
 cd ~/.config/dwm/ && make && sudo make install
 
 echo "Done!"
-rm -rf ../dotfiles
+rm -rf xorg.conf.d/ .config/ ../dotfiles/
