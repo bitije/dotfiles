@@ -2,7 +2,7 @@
 
 # status bar things
 status (){
-    echo -n " $( (echo "$(acpi)" | grep -oP '([1-9][0-9]%|100%)') | sed s/,//) | $(date '+%Y-%m-%d | %H:%M') "
+    echo -n " $( (echo "$(acpi)" | grep -oP '([1-9][0-9]%|100%)')) | $(date '+%Y-%m-%d | %H:%M') "
 }
 
 # xrandr second display connected
