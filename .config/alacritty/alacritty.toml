@@ -1,0 +1,11 @@
+import = ["/home/w/.config/alacritty/catppuccin-mocha-dark.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Bold"

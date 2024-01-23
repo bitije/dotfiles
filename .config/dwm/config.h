@@ -40,6 +40,9 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+/* powermenu */
+static const char *powermenu[] = { "/home/w/.config/dwm/powermenu.sh", NULL };
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -69,7 +72,7 @@ static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmut
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *brupcmd[] = { "light", "-A", "10", NULL };
 static const char *brdowncmd[] = { "light", "-U", "10", NULL };
-static const char *cmdprintscreen[]  = { "scrot", "-s", "%Y-%m-%d-%s_$wx$h.jpg", NULL };
+static const char *cmdprintscreen[]  = { "scrot", "-fs", "/home/w/screenshots/%Y-%m-%d-%s_$wx$h.jpg", "-e", "xclip -selection clipboard -t image/png -i $f", NULL };
 
 /* Control Media Players */
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
@@ -88,6 +91,7 @@ static const Key keys[] = {
     { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
     { 0, XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
     { 0, XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
+    { 0, XF86XK_PowerOff, spawn, {.v = powermenu} },
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      togglebar,      {0} },
