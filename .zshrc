@@ -44,19 +44,15 @@ fj () {
 tt () { tmux new-session -c $(pwd) }
 
 # my notes
-notes_session="notes"
 nn () {
-    if { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
-        echo "Not in a tmux session."
-    elif tmux has-session -t $notes_session; then
-        tmux attach -t $notes_session
-    else
-        tmux new-session -s $notes_session -c $HOME/obsidian-vault/ $EDITOR $HOME/obsidian-vault/1-main.md
-    fi
+    cd $HOME/obsidian-vault
+    $EDITOR $HOME/obsidian-vault/1-main.md
+    cd $OLDPWD
 }
 
 # git sync notes
 sync-notes () {
-    cd $HOME/obsidian-vault && git add . && git commit -m "sync-notes" && git push
+    cd $HOME/obsidian-vault
+    git add . && git commit -m "sync-notes" && git push
     cd $OLDPWD
 }
