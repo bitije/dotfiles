@@ -25,7 +25,7 @@ ff () { find $HOME | fzf | xargs -r -I % $EDITOR % ; }
 
 # start tmux session for project
 fj () {
-    selected_file=$( find $HOME/dev/ -type f | fzf )
+    selected_file=$( find $HOME/dev/ -type d | fzf )
     if [ -n "$selected_file" ]; then
         cd $(dirname $selected_file)
         session_name=$(basename "$(dirname "$selected_file")")
