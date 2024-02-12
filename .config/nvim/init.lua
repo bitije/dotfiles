@@ -57,8 +57,12 @@ vim.keymap.set("i", "{", "{}<left>")
 
 -- BASIC SETS --
 vim.opt.guicursor = ""
+vim.opt.cursorline = false
+--vim.opt.cursorcolumn = true
+--vim.opt.textwidth = 75
+--vim.opt.colorcolumn = "+1"
 vim.opt.syntax = "ON"
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.backup = false
 vim.opt.swapfile = false
@@ -69,7 +73,7 @@ vim.opt.expandtab = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.conceallevel = 2
