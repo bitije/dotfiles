@@ -2,6 +2,10 @@ require("packer")
 
 -- REMAPS --
 vim.g.mapleader = " "
+
+--vim.api.nvim_set_keymap('n', "<leader>w", "<C-w>", { noremap = true })
+vim.keymap.set("n", "<leader>w", "<C-w>")
+
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 -- Yank to clipboard
@@ -38,7 +42,6 @@ vim.keymap.set("n", "<leader>h", ":tabprevious <CR>")
 vim.keymap.set("n", "<leader>l", ":tabnext <CR>")
 
 -- Split navigation
-vim.keymap.set("n", "<leader>s", ":split")
 vim.keymap.set("n", "<M-l>", ":vertical resize +1 <CR>")
 vim.keymap.set("n", "<M-h>", ":vertical resize -1 <CR>")
 vim.keymap.set("n", "<M-j>", ":resize +1 <CR>")
