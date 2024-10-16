@@ -1,4 +1,6 @@
+#test
 import = ["/home/w/.config/alacritty/catppuccin-mocha-dark.toml"]
+#import = ["/home/w/.config/alacritty/catppuccin-latte.toml"]
 
 [env]
 TERM = "xterm-256color"

@@ -2,10 +2,6 @@ require("packer")
 
 -- REMAPS --
 vim.g.mapleader = " "
-
---vim.api.nvim_set_keymap('n', "<leader>w", "<C-w>", { noremap = true })
-vim.keymap.set("n", "<leader>w", "<C-w>")
-
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 -- Yank to clipboard
@@ -24,7 +20,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Paste instead selected without losing buffer
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>pp", [["_dP]])
 
 -- Scroling remaps
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -51,12 +47,18 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
+-- Maximize split
+vim.keymap.set("n", "<leader>ww", "<C-w>_") -- horizontal
+vim.keymap.set("n", "<leader>we", "<C-w>|") -- vertical
+vim.keymap.set("n", "<leader>wq", "<C-w>=") -- reset
+
 -- Automatically close brackets, parethesis, and quotes
 vim.keymap.set("i", "'", "''<left>")
 vim.keymap.set("i", "\"", "\"\"<left>")
 vim.keymap.set("i", "(", "()<left>")
 vim.keymap.set("i", "[", "[]<left>")
 vim.keymap.set("i", "{", "{}<left>")
+vim.keymap.set("i", "<", "<><left>")
 
 -- BASIC SETS --
 vim.opt.guicursor = ""
