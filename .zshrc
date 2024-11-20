@@ -1,13 +1,15 @@
-# test
 # Auto startx
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    exec startx
-fi
+# if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#     exec startx
+# fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=/home/w/bin:$PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# export .env file
+[ -f "$HOME/.env" ] && source "$HOME/.env"
 
 ZSH_THEME="robbyrussell"
 
@@ -20,6 +22,7 @@ alias v="nvim"
 alias ccc="clipmenu"
 alias chtsh="less /home/w/cht.sh"
 alias vpn="$HOME/bin/Outline-Client.AppImage"
+alias mtt="echo $MTT_PASS | sudo openconnect --protocol=anyconnect --passwd-on-stdin --user FSomov@office.msk.mtt --authgroup=MTT_RemoteAccess vpn.mtt.ru"
 
 # find in files
 ff () { find $HOME | fzf | xargs -r -I % $EDITOR % ; }
@@ -28,8 +31,8 @@ ff () { find $HOME | fzf | xargs -r -I % $EDITOR % ; }
 fj () {
     selected_file=$( find $HOME/dev/ -type d | fzf )
     if [ -n "$selected_file" ]; then
-        cd $(dirname $selected_file)
-        session_name=$(basename "$(dirname "$selected_file")")
+        cd $selected_file
+        session_name=$(basename "$selected_file")
         tmux new-session -d -s "$session_name" 
         tmux send-keys -t "$session_name:0" "$EDITOR $selected_file" C-m
         tmux split-window -h -t "$session_name:0"

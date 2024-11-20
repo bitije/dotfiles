@@ -61,6 +61,7 @@ vim.keymap.set("i", "{", "{}<left>")
 vim.keymap.set("i", "<", "<><left>")
 
 -- BASIC SETS --
+vim.opt.signcolumn = "yes"
 vim.opt.guicursor = ""
 vim.opt.cursorline = false
 --vim.opt.cursorcolumn = true
