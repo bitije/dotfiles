@@ -7,6 +7,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export PATH=/home/w/bin:$PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export GOBIN=$HOME/go/bin
+export PATH=$PATH:$GOBIN
 
 # export .env file
 [ -f "$HOME/.env" ] && source "$HOME/.env"

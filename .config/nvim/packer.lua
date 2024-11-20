@@ -133,7 +133,7 @@ return require('packer').startup(function(use)
             local lsp = require('lsp-zero')
             require('mason').setup({})
             local mason_lspconfig = require('mason-lspconfig')
-            mason_lspconfig.setup({ ensure_installed = { 'pyright', 'lua_ls', 'gopls', 'eslint', 'bufls', }, })
+            mason_lspconfig.setup({ ensure_installed = { 'pyright', 'ruff_lsp', 'ruff', 'lua_ls', 'gopls', 'eslint', 'bufls', }, })
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
