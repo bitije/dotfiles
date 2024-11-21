@@ -1,17 +1,13 @@
 import shutil
 import os
 
-def copy_to_config_directory(source_directory):
+def copy_to_config_directory(source_directory) -> str|None:
     current_directory = os.getcwd()
     config_directory = os.path.join(current_directory, ".config")
-    
     if not os.path.exists(config_directory):
         os.makedirs(config_directory)
-    
     item_name = os.path.basename(source_directory.rstrip('/'))
-    
     destination_path = os.path.join(config_directory, item_name)
-    
     try:
         if os.path.isdir(source_directory):
             if os.path.exists(destination_path):
@@ -20,9 +16,9 @@ def copy_to_config_directory(source_directory):
                 else:
                     os.remove(destination_path)
             shutil.copytree(source_directory, destination_path)
-            print(f"Copied directory {source_directory} to {destination_path}")
+            print(f"Copied {source_directory}")
         else:
-            print(f"Not found: {source_directory}")
+            return source_directory
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -40,9 +36,9 @@ def copy_rc_files(rc_files):
                 if os.path.exists(destination_file):
                     os.remove(destination_file)
             shutil.copy2(source_file, destination_file)
-            print(f"Copied {rc_file} to {destination_file}")
+            print(f"Copied {rc_file}")
         except FileNotFoundError:
-            print(f"Not found: {rc_file}")
+            return source_file
         except Exception as e:
             print(f"An error occurred: {e}")
 
@@ -55,13 +51,17 @@ configs_to_copy = [
         'rofi',
         'waybar'
         ]
+not_found = []
 for source_path in configs_to_copy:
     source_path = '/home/w/.config/' + source_path
-    copy_to_config_directory(source_path)
+    if (path := copy_to_config_directory(source_path)) is not None:
+        not_found.append(path)
 
 rc_files = [
         '.xinitrc',
         '.zshrc'
         ]
-copy_rc_files(rc_files)
+if (path := copy_rc_files(rc_files)) is not None:
+    not_found.append(path)
 
+print(f"\nNot found:\n", "\n".join(not_found))

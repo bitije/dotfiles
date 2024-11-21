@@ -9,6 +9,8 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GOBIN=$HOME/go/bin
 export PATH=$PATH:$GOBIN
+export GOINSECURE=*.rnd.mtt
+export GOPRIVATE=*.rnd.mtt
 
 # export .env file
 [ -f "$HOME/.env" ] && source "$HOME/.env"
