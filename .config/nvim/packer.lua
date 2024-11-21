@@ -85,10 +85,11 @@ return require('packer').startup(function(use)
         end
     }
 
-
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function() require 'nvim-treesitter.configs'.setup {
-                ensure_installed = { "python", "c", "lua", "bash", "query", "javascript", "html", "css", "yaml", "sql", "proto" },
-                sync_install = false, auto_install = true, highlight = { enable = true, additional_vim_regex_highlighting = false, }, } end })
+                ensure_installed = { "python", "go" },
+                sync_install = false,
+                auto_install = true,
+                highlight = { enable = true, additional_vim_regex_highlighting = false, }, } end })
 
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } },
@@ -111,7 +112,6 @@ return require('packer').startup(function(use)
                 color_overrides = { mocha = { base = "#000000", mantle = "#000000", crust = "#000000", },
                 },
             })
-            --vim.cmd.colorscheme "catppuccin-latte"
             vim.cmd.colorscheme "catppuccin-mocha"
         end
     })
@@ -125,46 +125,15 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' },
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'jose-elias-alvarez/null-ls.nvim' },
-            { 'MunifTanjim/prettier.nvim' }
         },
         config = function()
             local lsp = require('lsp-zero')
             require('mason').setup({})
             local mason_lspconfig = require('mason-lspconfig')
-            mason_lspconfig.setup({ ensure_installed = { 'pyright', 'ruff_lsp', 'ruff', 'lua_ls', 'gopls', 'eslint', 'bufls', }, })
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.prettier.with({
-                        filetypes = {
-                            "css",
-                            "javascript",
-                            "javascriptreact",
-                            "json",
-                            "markdown",
-                            "scss",
-                            "typescript",
-                            "typescriptreact",
-                            "yaml",
-                            "proto", }, }), }, })
-            require('prettier').setup({
-                bin = 'prettierd',
-                filetypes = {
-                    "css",
-                    "javascript",
-                    "javascriptreact",
-                    "json",
-                    "markdown",
-                    "scss",
-                    "typescript",
-                    "typescriptreact",
-                    "yaml",
-                    "proto", }, })
+            mason_lspconfig.setup({ ensure_installed = { 'pyright', 'gopls' }, })
             local lspconfig = require("lspconfig")
-            lspconfig.gopls.setup({ settings = { gopls = {analyses = { unusedparams = true, }, staticcheck = true, gofumpt = true,}, }, })
             lspconfig.pyright.setup({})
+            lspconfig.gopls.setup({ settings = { gopls = {analyses = { unusedparams = true, }, staticcheck = true, gofumpt = true,}, }, })
             vim.api.nvim_exec([[ augroup FormatAutocmd autocmd! autocmd BufWritePre *.go lua FormatOnSave() augroup END ]], true)
             function FormatOnSave()
                 local params = vim.lsp.util.make_range_params()
@@ -180,16 +149,11 @@ return require('packer').startup(function(use)
                 end
                 vim.lsp.buf.format({ async = false })
             end
-            -- ==END GOPLS CONFIG== --
             local cmp = require('cmp')
             cmp.setup {
-                sources = {
-                    { name = 'nvim_lsp' },
-                },
+                sources = { { name = 'nvim_lsp' }, },
                 mapping = cmp.mapping.preset.insert({}),
-                completion = {
-                    --autocomplete = false,
-                },
+                completion = { --autocomplete = false, },
             }
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
             lsp.on_attach(function(_, bufnr)
@@ -205,8 +169,6 @@ return require('packer').startup(function(use)
                 vim.keymap.set("i", "<C-f>", function() vim.lsp.buf.signature_help() end, opts)
                 vim.keymap.set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
                 vim.keymap.set("n", "<leader>i", function() vim.diagnostic.open_float() end, opts)
-                vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-                vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
             end)
             lsp.setup()
             vim.diagnostic.config({
