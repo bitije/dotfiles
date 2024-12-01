@@ -8,12 +8,19 @@ return require('packer').startup(function(use)
     use 'kristijanhusak/vim-dadbod-ui'
     use 'kristijanhusak/vim-dadbod-completion'
 
+    use({
+        'Wansmer/langmapper.nvim',
+        config = function()
+            require('langmapper').setup({})
+        end,
+    })
+
     use 'nvim-neotest/nvim-nio'
     use 'theHamsta/nvim-dap-virtual-text'
+    use 'sebdah/vim-delve'
     use {'mfussenegger/nvim-dap',
         config = function()
             local dap = require('dap')
-            -- Define the Delve adapter
             dap.adapters.go = function(callback, config)
                 local handle
                 local pid_or_err
@@ -153,7 +160,8 @@ return require('packer').startup(function(use)
             cmp.setup {
                 sources = { { name = 'nvim_lsp' }, },
                 mapping = cmp.mapping.preset.insert({}),
-                completion = { --autocomplete = false, },
+                completion = { --autocomplete = false,
+                },
             }
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
             lsp.on_attach(function(_, bufnr)
